@@ -8,8 +8,13 @@ namespace EchoServer
 {
     class Program
     {
+        private const int PORT = 7777;
         static void Main(string[] args)
         {
+            Server server = new Server(PORT);
+            server.StartServer();
+
+            Console.ReadLine();
         }
     }
 }
