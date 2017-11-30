@@ -27,8 +27,8 @@ namespace EchoServer
             bool checkCertificateRevocation = true;
             SslProtocols enabledSSLProtocols = SslProtocols.Tls;
 
-            string serverCertificateFileASW = "C:/CertificatesFinal/ServerSSL.pfx";
-            X509Certificate serverCertificate = new X509Certificate2(serverCertificateFileASW, "mysecret");
+            string serverCertificateFileASW = "C:/SSLCertificates/ServerSSL.pfx";
+            X509Certificate serverCertificate = new X509Certificate2(serverCertificateFileASW, "myfifi");
 
             TcpListener serverSocket = new TcpListener(IPAddress.Loopback,PORT);
             serverSocket.Start();
@@ -48,7 +48,7 @@ namespace EchoServer
                 DisplaySecurityServices(sslStream);
                 DisplayCertificateInformation(sslStream);
                 DisplayStreamProperties(sslStream);
-                DisplayUsage();
+               // DisplayUsage();
 
                 using (StreamReader sr = new StreamReader(sslStream))
                 using (StreamWriter sw = new StreamWriter(sslStream))
@@ -85,6 +85,8 @@ namespace EchoServer
             Console.WriteLine("Is encrypted: {0}", stream.IsEncrypted);
         }
 
+       
+
         void DisplayCertificateInformation(SslStream stream)
         {
             Console.WriteLine("Certificate revocation list checked: {0}", stream.CheckCertRevocationStatus);
@@ -120,7 +122,7 @@ namespace EchoServer
         void DisplayStreamProperties(SslStream stream)
         {
             Console.WriteLine("Can read: {0}, write {1}", stream.CanRead, stream.CanWrite);
-            Console.WriteLine("Can timeout: {0}",stream.IsEncrypted);
+            Console.WriteLine("Can timeout: {0}", stream.IsEncrypted);
         }
 
         private void DisplayUsage()
